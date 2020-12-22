@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite4 - Poszerzenie JSX</title>
+
+
+  </head>
+  <body>
+
+    <div id="kontener"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class DodatkiJSX extends React.Component {
+        render() {
+
+          return(
+            <h3>Liczba losowa {Math.random() * 100/* funkcja zwraca liczbe losowa*/} taka jest!</h3>
+          );
+        }
+      }
+
+      class Lista1 extends React.Component {
+        render() {
+          return(
+            [
+              <p>Akapit1</p>,
+              <p>Akapit drugi</p>,
+              <p>Akapit ostatni</p>
+              /* wyswietlanie kilu elementów zamiast div*/
+            ]
+          );
+        }
+      }
+
+      class Lista1zKey extends React.Component {
+        render() {
+          return(
+            [
+              <p key="1">Akapit1 z Key</p>,
+              <p key="2">Akapit drugi z Key</p>,
+              <p key="3">Akapit ostatni z Key</p>
+
+            ]
+          );
+        }
+      }
+
+      class ListaZFragentow extends React.Component {
+        render() {
+          return(
+            <React.Fragment>
+            <p>Akapit1 z React.Fragment</p>
+            <p>Akapit drugi z React.Fragment</p>
+            <p>Akapit ostatni z React.Fragment</p>
+
+            </React.Fragment>
+          );
+        }
+      }
+
+
+
+
+      ReactDOM.render(
+        <div>
+          <DodatkiJSX/>
+          <Lista1/>
+          <Lista1zKey/>
+          <ListaZFragentow/>
+
+        </div>,
+        document.querySelector("#kontener")
+      );
+
+
+
+
+    </script>
+
+  </body>
+</html>

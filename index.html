@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite4 - Poszerzenie JSX</title>
+
+
+  </head>
+  <body>
+
+    <div id="kontener"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+            display: "block",
+          }
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      class Tytul extends React.Component {
+        render() {
+          return(
+            <h3>Pierwsze Kroki z ReactJS</h3>
+          );
+        }
+      }
+
+
+
+
+
+      ReactDOM.render(
+        <div>
+          <Tytul/>
+          <Linki celLinka="React1%20-%20komponenty/index.html">React1 - komponenty</Linki>
+          <Linki celLinka="React2%20-%20style/index.html">React2 - style</Linki>
+          <Linki celLinka="React3%20-%20tworzenie%20komponentów/index.html">React3 - tworzenie komponentów</Linki>
+          <Linki celLinka="React3%20-%20tworzenie%20komponentów%20i%20przekazywanie%20props/index.html">React3 - tworzenie komponentów i przekazywanie props</Linki>
+          <Linki celLinka="React4%20-%20poszerzenie%20JSX/index.html">React4 - poszerzenie JSX</Linki>
+
+
+        </div>,
+        document.querySelector("#kontener")
+      );
+
+
+
+
+    </script>
+
+  </body>
+</html>

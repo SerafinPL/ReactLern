@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite1 - komponenty</title>
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+    <div id="kontener"></div>
+    <div id="kontener2"></div>
+    <div id="kontener3"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class Buttonify extends React.Component {
+        render() {
+          return(
+            <div>
+              <button type={this.props.behavior}>{this.props.children}</button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+          <Buttonify behavior="submit">WyŚlij Dane</Buttonify>
+        </div>,
+        document.querySelector("#kontener3")
+      );
+
+
+
+
+
+      class HelloWord extends React.Component{
+        render(){
+          return <p>Witamy REact'owe Komponenty {this.props.greetTarget}</p>
+        }
+      }
+
+      ReactDOM.render(
+      <div >
+        <HelloWord greetTarget="FAjne"/>
+        <HelloWord greetTarget="Zgrabne"/>
+        <HelloWord greetTarget="No i Ciekawe:D" />
+      </div>,
+      document.querySelector('#kontener2')
+      );
+
+      var cel = document.querySelector('#kontener');
+      ReactDOM.render(
+        <p>Nazywam sie Koder... a tak KubaKoder</p>,
+        cel
+      );
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite3 - Tworzenie komponentów i przekazywanie props</title>
+
+
+  </head>
+  <body>
+
+    <div id="kontener"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class Kwadrat extends React.Component {
+        render() {
+          var stylKwadratu = {
+            height: 150,
+            backgroundColor: this.props.color
+          }
+
+          return(
+            <div style = {stylKwadratu}>
+
+
+            </div>
+          );
+        }
+      }
+
+      class Etykieta extends React.Component {
+        render() {
+          var stylEtykiety = {
+              fontFamily: "sans-serif",
+              fontWeight: "bold",
+              padding: 13,
+              margin: 0
+          }
+
+          return(
+
+            <p style={stylEtykiety}> {this.props.color} </p>
+    
+
+          );
+        }
+      }
+
+      class Karta extends React.Component {
+        render() {
+          var stylKarty = {
+            height: 200,
+            width: 150,
+            padding: 0,
+            margin: 5,
+            backgroundColor: "#FFF",
+            boxShadow: "0px 0px 5px #777",
+            float: "left"
+
+          };
+
+          return(
+            <div style={stylKarty}>
+              <Kwadrat color={this.props.kolorkarty}/>
+              <Etykieta color={this.props.kolorkarty}/>
+            </div>
+          );
+        }
+      }
+
+
+      ReactDOM.render(
+        <div>
+          <Karta kolorkarty="#FF7774"/>
+
+          <Karta kolorkarty="#552274"/>
+        </div>,
+        document.querySelector("#kontener")
+      );
+
+
+
+
+    </script>
+
+  </body>
+</html>

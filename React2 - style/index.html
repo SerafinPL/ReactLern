@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite2 - Stylowanie</title>
+
+
+  </head>
+  <body>
+
+    <div id="kontener"></div>
+    <div id="kontener2"></div>
+    <div id="kontener3"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      var cel = document.querySelector('#kontener');
+
+      class Letter extends React.Component {
+        render() {
+
+          var letterStyle = {
+            padding: 10,
+            margin: 10,
+            backgroundColor: this.props.bgcolor, // właściwość kolor do modyfikacji
+            color: "#333",
+            display: "inline-block",
+            fontFamily: "monospace",
+            fontSize: 32,
+            textAlign: "center"
+          };
+
+          return(
+            <div style={letterStyle}>
+              {this.props.children}
+            </div>
+          );
+        }
+      }
+
+
+      ReactDOM.render(
+        <div>
+          <Letter bgcolor="#58b3ff">A</Letter>
+          <Letter bgcolor="#ff605f">E</Letter>
+          <Letter bgcolor="#ffd52e">I</Letter>
+          <Letter bgcolor="#49dd8e">O</Letter>
+          <Letter bgcolor="#ae99ff">U</Letter>
+        </div>,
+        cel
+      );
+
+    </script>
+
+  </body>
+</html>

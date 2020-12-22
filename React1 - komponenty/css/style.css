@@ -1,0 +1,12 @@
+
+
+#kontener{
+  padding: 50px;
+  background-color: #EEE;
+}
+
+#kontener p{
+  font-size: 25px;
+  font-family: monospace;
+  color: #0080a8;
+}
