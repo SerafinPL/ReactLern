@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React5 - Obsługa stanów</title>
+
+
+  </head>
+  <body>
+
+    <div id="backing"></div>
+    <div id="kontener"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      class LicznikPiorunow extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            uderzenia: 0
+          };
+          // przypisujemy timerTick żeby this był powiazny z setState
+          this.timerTick = this.timerTick.bind(this);
+
+        }
+        // Funcja własna jak w JS
+        timerTick(){
+          // setState umożliwa zmiane obiektu state i automatycznie wywołuje render()
+          this.setState({
+            uderzenia: this.state.uderzenia + 100
+          });
+        }
+
+
+
+        // funkcja react wywoływana po wyswietleniu komponentu
+        componentDidMount(){
+          setInterval(this.timerTick, 1000);
+        }
+
+        render() {
+          var stylLicznika = {
+            color: "#77EEEE",
+            fontSize: 50
+          };
+
+          var liczba = this.state.uderzenia.toLocaleString();
+
+
+          return(
+            <h1 style={stylLicznika}>{liczba}</h1>
+          );
+        }
+      }
+
+      class WyswitlaczLicznika extends React.Component {
+        render() {
+          var stylWyswietlacza = {
+            width: 250,
+            textAlign: "center",
+            backgroundColor: "#030303",
+            padding: 40,
+            fontFamily: "sans-serif",
+            color: "#CCC",
+            borderRadius: 10,
+            margin: 15
+          };
+
+          var podstawowyStylTxt ={
+            margin: 0,
+            padding: 0
+          }
+
+          var stylTekstu = {
+            duzy:{
+              fontSize: 38,
+              ...podstawowyStylTxt
+            },
+            sredni:{
+              ...podstawowyStylTxt
+            },
+            maly:{
+              fontSize: 16,
+              opacity: 0.5,
+              ...podstawowyStylTxt
+            }
+          };
+
+          return(
+            <div style={stylWyswietlacza}>
+              <LicznikPiorunow/>
+              <h2 style={stylTekstu.duzy}>Liczba uderzeń piorunów </h2>
+              <h2 style={stylTekstu.sredni}>na całym świecie </h2>
+              <p style={stylTekstu.maly}>(od otwarcia strony) </p>
+              <p style={stylTekstu.maly}>(według średniej z NatonalGeografic) </p>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <div>
+          <WyswitlaczLicznika/>
+
+        </div>,
+        document.querySelector("#kontener")
+      );
+
+
+
+      /* powroty do index*/
+
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+
+            backgroundColor: "#EEE",
+            fontFamily: "monospace",
+            color: "#0080a8",
+            padding: 10
+          }
+
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      ReactDOM.render(
+
+          <Linki celLinka="../index.html">Powrót do spisu</Linki>,
+        document.querySelector("#backing")
+      );
+
+
+    </script>
+
+  </body>
+</html>

@@ -8,7 +8,7 @@
 
   </head>
   <body>
-
+    <div id="backing"></div>
     <div id="kontener"></div>
 
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
@@ -54,7 +54,7 @@
             height: 200,
             width: 150,
             padding: 0,
-            margin: 5,
+            margin: 15,
             backgroundColor: "#FFF",
             boxShadow: "0px 0px 5px #777",
             float: "left"
@@ -80,7 +80,32 @@
       );
 
 
+      /* powroty do index*/
 
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+
+            backgroundColor: "#EEE",
+            fontFamily: "monospace",
+            color: "#0080a8",
+            padding: 10
+          }
+
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      ReactDOM.render(
+
+          <Linki celLinka="../index.html">Powrót do spisu</Linki>,
+        document.querySelector("#backing")
+      );
 
     </script>
 

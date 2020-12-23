@@ -8,7 +8,7 @@
 
   </head>
   <body>
-
+    <div id="backing"></div>
     <div id="kontener"></div>
     <div id="kontener2"></div>
     <div id="kontener3"></div>
@@ -41,7 +41,7 @@
 
       class HelloWord extends React.Component{
         render(){
-          return <p>Witamy REact'owe Komponenty {this.props.greetTarget}</p>
+          return <p>Witamy REactowe Komponenty {this.props.greetTarget}</p>
         }
       }
 
@@ -59,6 +59,34 @@
         <p>Nazywam sie Koder... a tak KubaKoder</p>,
         cel
       );
+
+      /* powroty do index*/
+
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+
+            backgroundColor: "#EEE",
+            fontFamily: "monospace",
+            color: "#0080a8",
+            padding: 10
+          }
+
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      ReactDOM.render(
+
+          <Linki celLinka="../index.html">Powrót do spisu</Linki>,
+        document.querySelector("#backing")
+      );
+
 
     </script>
 
