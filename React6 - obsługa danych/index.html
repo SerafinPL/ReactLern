@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ReactSite2 - Stylowanie</title>
+
+
+  </head>
+  <body>
+    <div id="backing"></div>
+    <div id="kontener"></div>
+    <div id="kontener2"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      var cel = document.querySelector('#kontener');
+
+      class Kolko extends React.Component {
+        render() {
+
+          var stylKolka = {
+            padding: 10,
+            margin: 20,
+            display: "inline-block",
+            backgroundColor: this.props.bgColor, // właściwość kolor do modyfikacji
+            borderRadius: "50%",
+            width: 100,
+            height:100,
+
+          };
+
+          return(
+            <div style={stylKolka}>
+            </div>
+          );
+        }
+      }
+
+
+
+      var kolory = ["#393e41", "#e94f37", "#ac89bf", "#a1d363",
+                    "#54cd97", "#ba5483", "#dc5193", "#f8a5c1"];
+
+      function pokazujKolka(){
+
+
+        var los = Math.floor(Math.random() * kolory.length);
+
+        return <Kolko bgColor= {kolory[los]}/>
+      }
+
+      ReactDOM.render(
+        <div>
+          {pokazujKolka()}
+          {pokazujKolka()}
+          {pokazujKolka()}
+        </div>,
+        cel
+      );
+
+      var renderData = [];
+
+      for (var i = 0; i < kolory.length; i++){
+        renderData.push(<Kolko key={i + kolory[i]} bgColor={kolory[i]} />)
+      }
+
+
+      ReactDOM.render(
+        <div>
+          {renderData}
+        </div>,
+        document.querySelector('#kontener2')
+      );
+
+      /* powroty do index*/
+
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+
+            backgroundColor: "#EEE",
+            fontFamily: "monospace",
+            color: "#0080a8",
+            padding: 10
+          }
+
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+          <Linki celLinka="../index.html">Powrót do spisu</Linki>
+          <p>Odśwież strone zobacz zmianę w pierwszym rzędzie losowe kolory</p>
+        </div>,
+
+        document.querySelector("#backing")
+      );
+
+
+
+    </script>
+
+  </body>
+</html>
