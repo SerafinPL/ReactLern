@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <title>React9 - cykle życia komponentów</title>
@@ -7,18 +7,18 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <style>
-      #container {
+      #kontener {
         padding: 50px;
         background-color: #FFF;
       }
       </style>
   </head>
 <body>
-<div id="container"></div>
+<div id="kontener"></div>
 <script type="text/babel">
-    var destination = document.querySelector("#container");
+    var cel = document.querySelector("#kontener");
 
-    class Counter extends React.Component {
+    class Licznik extends React.Component {
       render() {
         var textStyle = {
           fontSize: 72,
@@ -35,11 +35,11 @@
       }
     }
 
-    class CounterParent extends React.Component {
+    class RodzicLicznika extends React.Component {
       constructor(props, context) {
         super(props, context);
 
-        console.log("constructor: Default state time!");
+        console.log("constructor: Domyślny stan (konstruktor)!");
 
         this.state = {
           count: 0
@@ -55,40 +55,40 @@
       }
 
       componentWillUpdate(newProps, newState) {
-        console.log("componentWillUpdate: Component is about to update!");
+        console.log("componentWillUpdate: Komponent będzie Aktualizowany!");
       }
 
       componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate: Component just updated!");
+        console.log("componentDidUpdate: Komponent Aktualizowany!");
       }
 
       componentWillMount() {
-        console.log("componentWillMount: Component is about to mount!");
+        console.log("componentWillMount: Komponent będzie załadowany!");
       }
 
       componentDidMount() {
-        console.log("componentDidMount: Component just mounted!");
+        console.log("componentDidMount: Komponent załadowny!");
       }
 
       componentWillUnmount() {
-        console.log("componentWillUnmount: Component is about to be removed from the DOM!");
+        console.log("componentWillUnmount: Komponent będzie usuniety!");
       }
 
       shouldComponentUpdate(newProps, newState) {
-        console.log("shouldComponentUpdate: Should component update?");
+        console.log("shouldComponentUpdate: Komponent Aktualizujemy?");
 
         if (newState.count < 5) {
-          console.log("shouldComponentUpdate: Component should update!");
+          console.log("shouldComponentUpdate: Komponent będzie Aktualizowany!");
           return true;
         } else {
-          ReactDOM.unmountComponentAtNode(destination);
-          console.log("shouldComponentUpdate: Component should not update!");
+          ReactDOM.unmountComponentAtNode(cel);
+          console.log("shouldComponentUpdate: Komponentu nie Aktualizujemy!");
           return false;
         }
       }
 
       componentWillReceiveProps(newProps) {
-        console.log("componentWillReceiveProps: Component will get new props!");
+        console.log("componentWillReceiveProps: Komponent uzyska nowe właściwości");
       }
 
       render() {
@@ -103,7 +103,7 @@
 
         return (
           <div style={backgroundStyle}>
-            <Counter display={this.state.count} />
+            <Licznik display={this.state.count} />
             <button onClick={this.increase}>
               +
             </button>
@@ -112,16 +112,16 @@
       }
     };
 
-    console.log("defaultProps: Default prop time!");
-    CounterParent.defaultProps = {
+    console.log("defaultProps: Podstawowe właściwości");
+    RodzicLicznika.defaultProps = {
 
     };
 
     ReactDOM.render(
       <div>
-        <CounterParent />
+        <RodzicLicznika />
       </div>,
-      destination
+      cel
     );
   </script>
 </body>
