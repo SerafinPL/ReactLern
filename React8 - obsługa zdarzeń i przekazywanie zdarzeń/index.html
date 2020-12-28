@@ -3,7 +3,7 @@
 <html lang="pl" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>React7 - obsługa zdarzeń</title>
+    <title>React8 - obsługa zdarzeń i przekazywanie zdarzeń</title>
 
     <style>
       #kontner {
@@ -44,6 +44,27 @@
         }
       }
 
+      class GuzikPlus extends React.Component {
+
+        render() {
+
+          var stylGuzika = {
+            fontSize: "1em",
+            fontFamily: "monospace",
+            color: "#333",
+            fontWeight: "bold",
+            width: 30,
+            height: 30,
+            lineHeight: "3px",
+            textAlign: "center"
+          };
+
+          return(
+            <button onClick={this.props.clickHandler} style={stylGuzika} >+1</button>
+          )
+        };
+      }
+
       class RodzicLicznika extends React.Component {
         constructor(props){
           super(props);
@@ -55,20 +76,17 @@
           this.increase = this.increase.bind(this);
         }
 
-        increase(e) {  /* wykonana funkcja ze zmienną aktualnyStan*/
-
-          var aktualnyStan = this.state.count;
+        increase(e) { /* wykonana funkcja bez zmiennej aktualnyStan*/
 
           if (e.shiftKey) {
-            aktualnyStan += 10;
-          }else{
-            aktualnyStan += 1;
+            this.setState({
+              count: this.state.count + 10
+            });
+          } else {
+            this.setState({
+              count: this.state.count + 1
+            });
           }
-
-
-          this.setState({
-            count: aktualnyStan
-          });
         }
 
         render() {
@@ -84,21 +102,10 @@
 
           };
 
-          var stylGuzika = {
-            fontSize: "1em",
-            fontFamily: "monospace",
-            color: "#333",
-            fontWeight: "bold",
-            width: 30,
-            height: 30,
-            lineHeight: "3px",
-            textAlign: "center"
-          };
-
           return(
             <div style={stylTla}>
               <Licznik display={this.state.count} />
-              <button onClick={this.increase} style={stylGuzika} >+1</button>
+              <GuzikPlus clickHandler={this.increase}/>
               <p>Naciśnij Shift i zobacz różnice</p>
             </div>
           );
@@ -107,7 +114,7 @@
 
       ReactDOM.render(
         <div>
-        <RodzicLicznika/>
+          <RodzicLicznika/>
         </div>,
         cel
       );
