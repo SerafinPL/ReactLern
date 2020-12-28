@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React7 - obsługa zdarzeń</title>
+
+    <style>
+      #kontner {
+        padding: 50px;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="backing"></div>
+    <div id="kontener"></div>
+
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      var cel = document.querySelector('#kontener');
+
+      class Licznik extends React.Component {
+        render() {
+
+          var stylTekstu = {
+            fontSize: 72,
+            fontFamily: "monospace",
+            color: "#333",
+            fontWeight: "bold"
+
+          };
+
+          return(
+            <div style={stylTekstu}>
+              {this.props.display}
+            </div>
+          );
+        }
+      }
+
+      class RodzicLicznika extends React.Component {
+        constructor(props){
+          super(props);
+
+          this.state = {
+            count:0
+          };
+
+          this.increase = this.increase.bind(this);
+        }
+
+        increase(e) {
+          this.setState({
+            count: this.state.count +1
+          });
+        }
+
+        render() {
+
+          var stylTla = {
+            margin: 20,
+            padding: 50,
+            backgroundColor: "#FFC53A",
+            width: 250,
+            height: 100,
+            borderRadius: 10,
+            textAlign: "center"
+
+          };
+
+          var stylGuzika = {
+            fontSize: "1em",
+            fontFamily: "monospace",
+            color: "#333",
+            fontWeight: "bold",
+            width: 30,
+            height: 30,
+            lineHeight: "3px",
+            textAlign: "center"
+          };
+
+          return(
+            <div style={stylTla}>
+              <Licznik display={this.state.count} />
+              <button onClick={this.increase} style={stylGuzika} >+1</button>
+
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+        <RodzicLicznika/>
+        </div>,
+        cel
+      );
+
+
+
+
+
+      /* powroty do index*/
+
+      class Linki extends React.Component {
+        render() {
+
+          var likowStyl = {
+
+            backgroundColor: "#EEE",
+            fontFamily: "monospace",
+            color: "#0080a8",
+            padding: 10
+          }
+
+
+
+          return(
+            <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+          <Linki celLinka="../index.html">Powrót do spisu</Linki>
+
+        </div>,
+
+        document.querySelector("#backing")
+      );
+
+
+
+    </script>
+
+  </body>
+</html>
