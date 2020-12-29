@@ -43,6 +43,8 @@
   </head>
 <body>
   <div id="backing"></div>
+
+  <h1 id="naglowekKoloru">Kolorownik</h1>
   <div id="container"></div>
   <script type="text/babel">
 
@@ -95,20 +97,26 @@
                         }
                       }*/
                       // za pomocą gunkcji strzałkowej bez zmiennej self
-
                       ref={
                         (el) => {
                           this._input = el;
                         }
                       }
-
-
-
                      placeholder="Enter a color value"></input>
               <button type="submit">go</button>
             </form>
+            <EtykietaKoloru kolor={this.state.bgColor}/>
             <p>Wpisz nazwe koloru po angielsku</p>
           </div>
+        );
+      }
+    }
+
+    class EtykietaKoloru extends React.Component {
+      render() {
+        return ReactDOM.createPortal(
+          ": " + this.props.kolor,
+          document.querySelector("#naglowekKoloru")
         );
       }
     }
@@ -146,7 +154,6 @@
       </div>,
       document.querySelector("#backing")
     );
-
 
 
   </script>

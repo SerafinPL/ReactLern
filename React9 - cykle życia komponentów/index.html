@@ -14,7 +14,8 @@
       </style>
   </head>
 <body>
-<div id="kontener"></div>
+  <div id="backing"></div>
+  <div id="kontener"></div>
 <script type="text/babel">
     var cel = document.querySelector("#kontener");
 
@@ -123,6 +124,34 @@
       </div>,
       cel
     );
+
+
+    /* powroty do index*/
+
+    class Linki extends React.Component {
+      render() {
+
+        var likowStyl = {
+          backgroundColor: "#EEE",
+          fontFamily: "monospace",
+          color: "#0080a8",
+          padding: 10
+        }
+
+        return(
+          <a style={likowStyl} href={this.props.celLinka}>{this.props.children}</a>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <div>
+        <Linki celLinka="../index.html">Powrót do spisu</Linki>
+
+      </div>,
+      document.querySelector("#backing")
+    );
+
   </script>
 </body>
 </html>
