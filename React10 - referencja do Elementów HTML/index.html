@@ -70,8 +70,8 @@
           bgColor: this.state.color
         });
 
-        this._input.focus();
-        this._input.value="";
+        this.refeDoInput.focus();
+        this.refeDoInput.value="";
 
         e.preventDefault();
       }
@@ -91,14 +91,14 @@
               <input onChange={this.colorValue}
                       /*ref={
                         function(el) {
-                          self._input = el;
+                          self.refeDoInput = el;
                         }
                       }*/
                       // za pomocą gunkcji strzałkowej bez zmiennej self
 
                       ref={
                         (el) => {
-                          this._input = el;
+                          this.refeDoInput = el;
                         }
                       }
                      placeholder="Enter a color value"></input>
